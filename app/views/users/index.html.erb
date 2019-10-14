@@ -1,0 +1,8 @@
+<h2>ユーザー一覧ページ</h2>
+
+<% @users.each do |user| %>
+  <img src="<%= user.image %>" width="100">
+  <%= user.name %>
+  <%= user.email %>
+</br>
+<% end %>

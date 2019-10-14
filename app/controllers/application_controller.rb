@@ -14,7 +14,11 @@ class ApplicationController < ActionController::Base
   def after_sign_out_path_for(resource)
     "/"
   end
+
   def sign_in_required
+    if not user_signed_in?
+      flash[:notice] = "ログインしてください"
+    end
     redirect_to new_user_session_url unless user_signed_in?
   end
 

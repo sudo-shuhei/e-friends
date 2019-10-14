@@ -21,6 +21,8 @@ gem 'uglifier', '>= 1.3.0'
 
 #use devise for authentication
 gem 'devise'
+#use carrierwave for upload
+gem 'carrierwave'
 #use kaminari
 gem 'kaminari'
 #use ransack
