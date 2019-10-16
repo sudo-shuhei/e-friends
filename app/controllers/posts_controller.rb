@@ -22,4 +22,25 @@ class PostsController < ApplicationController
       render("posts/new")
     end
   end
+
+  def edit
+    @post = Post.find_by(id:params[:id])
+  end
+
+  def update
+    @post = Post.find_by(id:params[:id])
+    if @post.update(title: params[:title], game:params[:game], platform:params[:platform], comment:params[:comment])
+      flash[:notice] = "編集しました"
+      redirect_to("/posts/index")
+    else
+      render("posts/edit")
+    end
+  end
+
+  def destroy
+    @post = Post.find_by(id:params[:id])
+    @post.destroy
+    flash[:notice] = "削除しました"
+    redirect_to("/posts/index")
+  end
 end
