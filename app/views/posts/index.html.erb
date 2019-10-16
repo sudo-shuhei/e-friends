@@ -2,10 +2,12 @@
 
 <% @posts.each do |post| %>
   <div class = "post" >
-    <%= post.title %>
-    <%= post.game %>
-    <%= post.platform %>
-    <%= link_to "編集", "/posts/#{post.id}/edit"%>
-    <%= link_to "削除", "/posts/#{post.id}/destroy", {method:post}%>
+    <%= link_to "/posts/#{post.id}" do %>
+      <%= post.title %>
+      <%= post.game %>
+      <%= post.platform %>
+      <%#= link_to "編集", "/posts/#{post.id}/edit"%>
+      <%#= link_to "削除", "/posts/#{post.id}/destroy", {method:post}%>
+    <% end %>
   </div>
 <% end %>

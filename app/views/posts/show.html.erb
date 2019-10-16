@@ -1,0 +1,21 @@
+<h1>投稿詳細ページ</h1>
+
+<div class = "postbody" >
+  <div class = "posttitle" >
+    <%= @post.title %>
+  </div>
+  <div class = "postgame" >
+    <%= @post.game %>
+  </div>
+  <div class = "postplatform" >
+    <%= @post.platform %>
+  </div>
+  <div class = "postcomment" >
+    <%= @post.comment %>
+  </div>
+
+  <div class = "link" >
+    <%= link_to "編集", "/posts/#{@post.id}/edit" %>
+    <%= link_to "削除", "/posts/#{@post.id}/destroy", {method: Post}%>
+  </div>
+</div>
