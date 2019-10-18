@@ -47,4 +47,8 @@ class PostsController < ApplicationController
     flash[:notice] = "削除しました"
     redirect_to("/posts/index")
   end
+
+  def request_form
+    @post = Post.find_by(id:params[:id])
+  end
 end

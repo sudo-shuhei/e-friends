@@ -1,4 +1,4 @@
-<h1>投稿詳細ページ</h1>
+<h1>リクエスト送信画面</h1>
 
 <div class = "postbody" >
   <div class = "posttitle" >
@@ -13,14 +13,18 @@
   <div class = "postcomment" >
     <%= @post.comment %>
   </div>
+</div>
+</br>
 
-  <div class = "link" >
-    <%= link_to "編集", "/posts/#{@post.id}/edit" %>
-    <%= link_to "削除", "/posts/#{@post.id}/destroy", {method: Post}%>
+<p>リクエストを送りましょう</p>
+<div class = "requestform" >
+  <%= form_tag "/posts/send_request" do%>
+  <div class = "requestcomment">
+    <textarea name="requestcomment" ><%=  %></textarea>
   </div>
 
   <div class = "requestform" >
-    <%= link_to "リクエスト", "/posts/#{@post.id}/request_form" %>
+    <input type="submit" value="リクエスト">
   </div>
-
+  <% end %>
 </div>
