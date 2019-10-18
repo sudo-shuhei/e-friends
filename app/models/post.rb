@@ -1,4 +1,10 @@
 class Post < ApplicationRecord
+  belongs_to :user
+
+  def user
+    return User.find_by(id: self.user_id)
+  end
+
   validates :title, {presence:true}
   validates :user_id, {presence:true}
   validates :game, {presence:true}
