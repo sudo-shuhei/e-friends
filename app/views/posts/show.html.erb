@@ -2,8 +2,11 @@
 
 <div class = "postbody" >
   <div class = "posttitle" >
-    <%= @post.user.name %>
     <%= @post.title %>
+  </div>
+  <div class = "user">
+    <%= @post.user.name %>
+    <%= @post.user.profile %>
   </div>
   <div class = "postgame" >
     <%= @post.game %>
@@ -16,12 +19,16 @@
   </div>
 
   <div class = "link" >
-    <%= link_to "編集", "/posts/#{@post.id}/edit" %>
-    <%= link_to "削除", "/posts/#{@post.id}/destroy", {method: Post}%>
+    <% if current_user.id == @post.user.id %>
+      <%= link_to "編集", "/posts/#{@post.id}/edit" %>
+      <%= link_to "削除", "/posts/#{@post.id}/destroy", {method: Post}%>
+    <% end %>
   </div>
 
   <div class = "requestform" >
-    <%= link_to "リクエスト", "/posts/#{@post.id}/request_form" %>
+    <% unless current_user.id == @post.user.id %>
+      <%= link_to "リクエスト", "/posts/#{@post.id}/request_form" %>
+    <% end %>
   </div>
 
 </div>

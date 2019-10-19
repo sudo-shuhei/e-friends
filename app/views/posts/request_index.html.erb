@@ -1,0 +1,19 @@
+<h1>リクエスト一覧</h1>
+
+<div>
+  <% @requests.each do |request| %>
+    <div>
+      <%= request.post.title %>
+      <%= request.post.game %>
+      <%= request.post.platform %>
+      <%= request.post.comment %>
+    </div>
+    <div>
+      <%= request.user.name %>
+    </div>
+
+    <div>
+      <%= request.comment %>
+    </div>
+  <% end %>
+</div>

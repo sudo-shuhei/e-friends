@@ -1,12 +1,17 @@
 Rails.application.routes.draw do
+  get 'request/create'
+
   get 'posts/index'
   get 'posts/new'
   post 'posts/create'
+  get 'posts/request_index' => 'posts/request_index'
   get 'posts/:id' => 'posts#show'
   get 'posts/:id/edit' => 'posts#edit'
   post 'posts/:id/update' => 'posts#update'
   post 'posts/:id/destroy' => 'posts#destroy'
-  get 'posts/:id/request_form' => 'posts#request_form'
+  get 'posts/:id/request_form' => 'request#form'
+  post 'posts/:id/send_request' => 'request#create'
+
 
   get 'users/show'
   get 'users/index'

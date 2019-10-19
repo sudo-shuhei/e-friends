@@ -16,7 +16,7 @@
         </div>
       <% if user_signed_in? %>
         <%# <strong><%= link_to current_user.email, pages_show_path %><%#</strong> %>
-        <strong><%= link_to current_user.email, users_show_path %></strong>
+        <strong><%= link_to 'マイページ', users_show_path %></strong>
         <%= link_to 'プロフィール変更', edit_user_registration_path %>
         <%= link_to 'ログアウト', sign_out_path %>
       <% else %>
@@ -30,6 +30,9 @@
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+    <% if current_user.present? && Request.where(post_user_id: current_user.id).present? %>
+      <%= link_to "リクエストが届いています", "/posts/request_index" %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

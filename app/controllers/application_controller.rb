@@ -17,9 +17,12 @@ class ApplicationController < ActionController::Base
 
   def sign_in_required
     if not user_signed_in?
-      flash[:notice] = "ログインしてください"
+      flash[:notice] = "ログインが必要です"
+      redirect_to new_user_session_url unless user_signed_in?
     end
-    redirect_to new_user_session_url unless user_signed_in?
   end
 
+  def request_permitted_parameters
+    params.permit(:from_user_id)
+  end
 end
