@@ -27,7 +27,7 @@
 
   <div class = "requestform" >
     <% unless current_user.id == @post.user.id %>
-      <%= link_to "リクエスト", "/posts/#{@post.id}/request_form" %>
+      <%= link_to "リクエスト", "/request/#{@post.id}/form" %>
     <% end %>
   </div>
 

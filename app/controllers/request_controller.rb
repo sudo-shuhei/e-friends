@@ -19,4 +19,8 @@ class RequestController < ApplicationController
       render("posts/request_form")
     end
   end
+
+  def index
+    @requests = Request.where(post_user_id: current_user.id)
+  end
 end

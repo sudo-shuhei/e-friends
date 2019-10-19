@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def request_permitted_parameters
-    params.permit(:from_user_id)
-  end
+  #def request_permitted_parameters
+  #  params.permit(:from_user_id)
+  #end
 end

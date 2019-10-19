@@ -21,21 +21,8 @@
 </br>
 
 <p>リクエストを送りましょう</p>
-<%= form_with url: "/posts/#{@post.id}/send_request" do |form| %>
+<%= form_with url: "/request/#{@post.id}/create" do |form| %>
   <%= hidden_field_tag :from_user_id, current_user.id %>
   <%= form.text_area :comment %>
   <%= form.submit :送信 %>
 <% end %>
-
- <!-- <div class = "requestform" >
-  <%= form_tag "/posts/#{@post.id}/send_request" do %>
-  <% params[:from_user_id] = current_user.id %>
-  <div class = "requestcomment">
-    <textarea name="comment" ><%= @request.comment %></textarea>
-  </div>
-
-  <div class = "requestform" >
-    <input type="submit" value="リクエスト">
-  </div>
-  <% end %>
-</div> -->
