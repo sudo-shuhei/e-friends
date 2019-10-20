@@ -33,6 +33,12 @@
     <% if current_user.present? && Request.where(post_user_id: current_user.id).present? %>
       <%= link_to "リクエストが届いています", "/request/index" %>
     <% end %>
+    <br>
+    <% if @notifications.present? %>
+      <% @notifications.each do |notification| %>
+        <%= link_to notification.content, "/notification/#{notification.id}" %>
+      <% end %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

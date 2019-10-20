@@ -23,4 +23,29 @@ class RequestController < ApplicationController
   def index
     @requests = Request.where(post_user_id: current_user.id)
   end
+
+  def accept
+    @request = Request.find_by(id:params[:id])
+    #フレンドモデルに追加
+    friend1 = Friend.new(from_user_id: @request.user_id, to_user_id: @request.post_user_id)
+    friend2 = Friend.new(from_user_id: @request.post_user_id, to_user_id: @request.user_id)
+    friend1.save
+    friend2.save
+    notification = Notification.new(
+      to_user_id: @request.user_id,
+      content: "リクエストが承認されました",
+      post_id: @request.post_id,
+      post_user_id: @request.post_user_id )
+    notification.save
+    #DMにリダイレクト
+    @request.destroy
+    flash[:notice] = "リクエストを承認しました"
+    redirect_to "/"
+  end
+
+  def reject
+    @request = Request.find_by(id:params[:id])
+    @request.destroy
+    redirect_to("/request/index")
+  end
 end

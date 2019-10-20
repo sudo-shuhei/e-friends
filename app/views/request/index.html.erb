@@ -2,6 +2,7 @@
 
 <div>
   <% @requests.each do |request| %>
+    <br>
     <div>
       <%= request.post.title %>
       <%= request.post.game %>
@@ -14,6 +15,10 @@
 
     <div>
       <%= request.comment %>
+    </div>
+    <div>
+      <%= link_to "承認", "/request/#{request.id}/accept" %>
+      <%= link_to "×", "/request/#{request.id}/reject" %>
     </div>
   <% end %>
 </div>

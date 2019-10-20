@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'request/create'
+  root 'home#top'
 
   get 'posts/index'
   get 'posts/new'
@@ -8,16 +8,19 @@ Rails.application.routes.draw do
   get 'posts/:id/edit' => 'posts#edit'
   post 'posts/:id/update' => 'posts#update'
   post 'posts/:id/destroy' => 'posts#destroy'
-  
+
+  get 'request/create'
   get 'request/index'
+  get 'request/:id/accept' => 'request#accept'
+  get 'request/:id/reject' => 'request#reject'
   get 'request/:id/form' => 'request#form'
   post 'request/:id/create' => 'request#create'
-
 
   get 'users/show'
   get 'users/index'
 
-  root 'home#top'
+  get 'notification/:id' => 'notification#show'
+
 
   devise_for :users, :controllers => {
     :registrations => 'users/registrations',
