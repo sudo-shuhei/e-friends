@@ -39,8 +39,11 @@ class RequestController < ApplicationController
     notification.save
     #DMにリダイレクト
     @request.destroy
-    flash[:notice] = "リクエストを承認しました"
-    redirect_to "/"
+    flash[:notice] = "リクエストを承認しました! メッセージを送りましょう"
+
+    #flash[:notice] = current_user.id, @request.user_id
+    room_id = message_room_id(current_user.id, @request.user_id)
+    redirect_to "/message/#{room_id}"
   end
 
   def reject

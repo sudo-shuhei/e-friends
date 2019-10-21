@@ -30,4 +30,12 @@ class ApplicationController < ActionController::Base
       @notifications = Notification.where(to_user_id: current_user.id)
     end
   end
+
+  def message_room_id(first_user_id, second_user_id)
+    if first_user_id < second_user_id
+      "#{first_user_id}-#{second_user_id}"
+    else
+      "#{second_user_id}-#{first_user_id}"
+    end
+  end
 end

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content: MyString
+  from_user_id: MyString
+  to_user_id: MyString
+  room_id: MyString
+
+two:
+  content: MyString
+  from_user_id: MyString
+  to_user_id: MyString
+  room_id: MyString

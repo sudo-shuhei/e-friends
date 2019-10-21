@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'message/show'
+
   root 'home#top'
 
   get 'posts/index'
@@ -21,6 +23,8 @@ Rails.application.routes.draw do
 
   get 'notification/:id' => 'notification#show'
 
+  get 'message/:id' => 'message#show'
+  post 'message/:id/create' => 'message#create'
 
   devise_for :users, :controllers => {
     :registrations => 'users/registrations',
