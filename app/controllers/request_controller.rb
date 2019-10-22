@@ -24,13 +24,25 @@ class RequestController < ApplicationController
     @requests = Request.where(post_user_id: current_user.id)
   end
 
+  def not_exist?(user1, user2)
+    friend1 = Friend.where(from_user_id: user1, to_user_id: user2)
+    friend2 = Friend.where(from_user_id: user2, to_user_id: user1)
+    if friend1.blank? && friend2.blank?
+      return true
+    else
+      return false
+    end
+  end
+
   def accept
     @request = Request.find_by(id:params[:id])
     #フレンドモデルに追加
-    friend1 = Friend.new(from_user_id: @request.user_id, to_user_id: @request.post_user_id)
-    friend2 = Friend.new(from_user_id: @request.post_user_id, to_user_id: @request.user_id)
-    friend1.save
-    friend2.save
+    if not_exist?(@request.user_id, @request.post_user_id)
+      friend1 = Friend.new(from_user_id: @request.user_id, to_user_id: @request.post_user_id)
+      friend2 = Friend.new(from_user_id: @request.post_user_id, to_user_id: @request.user_id)
+      friend1.save
+      friend2.save
+    end
     notification = Notification.new(
       to_user_id: @request.user_id,
       content: "リクエストが承認されました",

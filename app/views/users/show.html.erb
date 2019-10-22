@@ -1,6 +1,37 @@
-<h2>マイページ</h2>
+<% if @user.id == current_user.id %>
+  <h2>マイページ</h2>
 
-<img src="<%= current_user.image %>" width="100">
-<p><%= current_user.name%></p>
-<p><%= current_user.email%></p>
-<p><%= current_user.profile %></p>
+  <img src="<%= current_user.image %>" width="100">
+  <p><%= current_user.name%></p>
+  <p><%= current_user.email%></p>
+  <p><%= current_user.profile %></p>
+
+  <div>
+    <%= link_to "フレンド一覧", "/friends/#{current_user.id}" %>
+  </div>
+
+  <div>
+    <p>自分の掲示一覧</p>
+    <% @posts.each do |post| %>
+      <%= link_to "#{post.title}", "/posts/#{post.id}"%>
+      <br>
+    <% end %>
+  </div>
+<% else %>
+  <img src="<%= @user.image %>" width="100">
+  <p><%= @user.name%></p>
+  <p><%= @user.email%></p>
+  <p><%= @user.profile %></p>
+
+  <div>
+    <%= link_to "メッセージ", "/message/#{@room_id}" %>
+  </div>
+
+  <div>
+    <p>掲示一覧</p>
+    <% @posts.each do |post| %>
+      <%= link_to "#{post.title}", "/posts/#{post.id}"%>
+      <br>
+    <% end %>
+  </div>
+<% end %>

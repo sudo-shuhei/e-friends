@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'message/show'
+  get 'friends/index'
 
   root 'home#top'
 
@@ -18,13 +18,15 @@ Rails.application.routes.draw do
   get 'request/:id/form' => 'request#form'
   post 'request/:id/create' => 'request#create'
 
-  get 'users/show'
+  get 'users/:id' => 'users#show'
   get 'users/index'
 
   get 'notification/:id' => 'notification#show'
 
   get 'message/:id' => 'message#show' #id = room_id
   post 'message/:id/create' => 'message#create'
+
+  get 'friends/:id' => 'friends#index'
 
   devise_for :users, :controllers => {
     :registrations => 'users/registrations',

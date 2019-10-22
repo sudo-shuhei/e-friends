@@ -1,0 +1,8 @@
+<h1>フレンド一覧画面</h1>
+
+<div>
+  <% @friends.each do |friend| %>
+    <% f= User.find_by(id: friend.to_user_id) %>
+    <%= link_to "#{f.name}", "/users/#{f.id}" %>
+  <% end %>
+</div>
