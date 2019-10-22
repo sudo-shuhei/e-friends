@@ -16,7 +16,7 @@
         </div>
       <% if user_signed_in? %>
         <%# <strong><%= link_to current_user.email, pages_show_path %><%#</strong> %>
-        <strong><%= link_to 'マイページ', users_show_path %></strong>
+        <strong><%= link_to current_user.name, users_show_path %></strong>
         <%= link_to 'プロフィール変更', edit_user_registration_path %>
         <%= link_to 'ログアウト', sign_out_path %>
       <% else %>
@@ -37,6 +37,7 @@
     <% if @notifications.present? %>
       <% @notifications.each do |notification| %>
         <%= link_to notification.content, "/notification/#{notification.id}" %>
+        <br>
       <% end %>
     <% end %>
     <%= yield %>

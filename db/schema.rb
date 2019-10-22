@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191021152334) do
+ActiveRecord::Schema.define(version: 20191022045621) do
 
   create_table "friends", force: :cascade do |t|
     t.integer "from_user_id"
@@ -33,9 +33,10 @@ ActiveRecord::Schema.define(version: 20191021152334) do
     t.string "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "post_id"
+    t.string "post_id"
     t.integer "post_user_id"
     t.string "status"
+    t.string "message_type"
   end
 
   create_table "posts", force: :cascade do |t|

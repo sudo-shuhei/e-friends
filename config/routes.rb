@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
   get 'notification/:id' => 'notification#show'
 
-  get 'message/:id' => 'message#show'
+  get 'message/:id' => 'message#show' #id = room_id
   post 'message/:id/create' => 'message#create'
 
   devise_for :users, :controllers => {
