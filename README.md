@@ -1,24 +1,25 @@
-# README
+#ゲームのフレンド検索アプリ
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 概要
+ゲームのフレンド募集アプリです。
+募集記事を投稿、リクエストができます。
 
-Things you may want to cover:
+## 実装済み機能
+- ユーザー周りの基本的な機能　ログイン、ログアウト...
+- フレンド機能、DM機能
+- フレンド募集記事投稿機能
+　投稿にリクエスト送信→承認→DM開始
 
-* Ruby version
+##　実装予定機能
+- 投稿,ユーザー検索機能
+- ページネーション機能
+- コミュニティフォロー機能
+- CSSの充実
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 使用技術
+-　開発環境　macbook, Ubuntu18.04
+- Ruby on Rails ruby(2.5.7) Rails(5.1.3)
+- docker
+- gem devise ユーザー周りの機能
+- gem carrierwave 画像アップロード機能
+- heroku デプロイ
