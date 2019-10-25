@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20191022045621) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "friends", force: :cascade do |t|
     t.integer "from_user_id"
     t.integer "to_user_id"

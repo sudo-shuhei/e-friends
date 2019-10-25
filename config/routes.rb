@@ -18,8 +18,9 @@ Rails.application.routes.draw do
   get 'request/:id/form' => 'request#form'
   post 'request/:id/create' => 'request#create'
 
-  get 'users/:id' => 'users#show'
+  get 'users/:id/show' => 'users#show'
   get 'users/index'
+
 
   get 'notification/:id' => 'notification#show'
 
