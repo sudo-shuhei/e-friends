@@ -1,8 +1,10 @@
 class PostsController < ApplicationController
   before_action :sign_in_required ,only: [:new, :edit, :request_form, :request_index]
+  PER = 8
 
   def index
-    @posts = Post.all
+    @posts = Post.all.order(createde_at: :desc)
+    @posts = Post.page(params[:page]).per(PER)
   end
 
   def new
