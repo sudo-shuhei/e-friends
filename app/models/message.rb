@@ -4,10 +4,10 @@ class Message < ApplicationRecord
   default_scope -> {order(created_at: :asc)}
 
   # Validations
-  #validates :from_user_id, presence: true
-  #validates :to_user_id, presence: true
-  #validates :room_id, presence: true
-  #validates :content, presence: true, length: {maximum: 50}
+  validates :from_user_id, presence: true
+  validates :to_user_id, presence: true
+  validates :room_id, presence: true
+  validates :content, presence: true, length: {maximum: 100}
 
   # Methods
   def Message.recent_in_room(room_id)
