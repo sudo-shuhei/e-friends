@@ -1,14 +1,20 @@
-<h1>投稿一覧ページ</h1>
+<h1></h1>
 
-<% @posts.each do |post| %>
-  <div class = "post" >
-    <%= link_to "/posts/#{post.id}" do %>
-      <%= post.title %>
-      <%= post.game %>
-      <%= post.platform %>
-      <%#= link_to "編集", "/posts/#{post.id}/edit"%>
-      <%#= link_to "削除", "/posts/#{post.id}/destroy", {method:post}%>
-    <% end %>
-  </div>
+<% if @search_posts.present? %>
+  <% @search_posts.each do |post| %>
+    <div class = "post" >
+      <%= link_to "/posts/#{post.id}" do %>
+        <%= post.title %>
+        <%= post.game %>
+        <%= post.platform %>
+        <%#= link_to "編集", "/posts/#{post.id}/edit"%>
+        <%#= link_to "削除", "/posts/#{post.id}/destroy", {method:post}%>
+      <% end %>
+    </div>
+  <% end %>
+  <%= paginate @posts %>
+<% else %>
+  <%= "投稿が見つかりませんでした" %>
+  <br>
+  <%= link_to "新規投稿", "/posts/new" %>
 <% end %>
-<%= paginate @posts %>

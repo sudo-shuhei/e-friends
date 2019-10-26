@@ -19,14 +19,14 @@
   </div>
 
   <div class = "link" >
-    <% if current_user.id == @post.user.id %>
+    <% if user_signed_in? and current_user.id == @post.user.id %>
       <%= link_to "編集", "/posts/#{@post.id}/edit" %>
       <%= link_to "削除", "/posts/#{@post.id}/destroy", {method: Post}%>
     <% end %>
   </div>
 
   <div class = "requestform" >
-    <% unless current_user.id == @post.user.id %>
+    <% if current_user.nil? or current_user.id != @post.user.id %>
       <%= link_to "リクエスト", "/request/#{@post.id}/form" %>
     <% end %>
   </div>

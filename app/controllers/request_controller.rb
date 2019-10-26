@@ -1,4 +1,6 @@
 class RequestController < ApplicationController
+  before_action :sign_in_required, only: [:form, :create, :accept, :reject]
+
   def form
     @post = Post.find_by(id:params[:id])
     @request = Request.new

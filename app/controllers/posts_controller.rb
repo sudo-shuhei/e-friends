@@ -1,10 +1,11 @@
 class PostsController < ApplicationController
-  before_action :sign_in_required ,only: [:new, :edit, :request_form, :request_index]
+  before_action :sign_in_required ,only: [:new, :edit, :create, :update, :destroy]
   PER = 8
 
   def index
     @posts = Post.all.order(createde_at: :desc)
     @posts = Post.page(params[:page]).per(PER)
+    set_prev_search_params
   end
 
   def new
@@ -50,5 +51,11 @@ class PostsController < ApplicationController
     @post.destroy
     flash[:notice] = "削除しました"
     redirect_to("/posts/index")
+  end
+
+  def set_prev_search_params
+    prev_q = URI(request.referer).query
+    prev_params = Rack::Utils.parse_nested_query(prev_q)
+    params[:q] = prev_params['q']
   end
 end

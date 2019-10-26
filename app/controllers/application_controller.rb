@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :check_notification
+  before_action :set_search
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :image])
@@ -38,4 +39,10 @@ class ApplicationController < ActionController::Base
       "#{second_user_id}-#{first_user_id}"
     end
   end
+
+  def set_search
+    @search = Post.ransack(params[:q])
+    @search_posts = @search.result.page(params[:page]).per(5)
+  end
+
 end
