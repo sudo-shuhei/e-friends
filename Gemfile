@@ -52,6 +52,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   #gem 'sqlite3'
   gem 'rspec-rails'
+  gem 'better_errors'
 end
 
 group :development do

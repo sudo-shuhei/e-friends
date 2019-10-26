@@ -1,6 +1,6 @@
 <h1>投稿編集ページ</h1>
 
-<%= form_tag "/posts/#{@post.id}/update" do %>
+<%= form_with url:"/posts/#{@post.id}/update", local: true do |form| %>
   <div class = "postform" >
     <div class = "error_messages">
       <% @post.errors.full_messages.each do |message| %>
@@ -9,22 +9,23 @@
     </div>
     <div class = "field" >
       <p>タイトル</p>
-      <input type="text" name= "title" value= "<%= @post.title.blank? ? "フレンド募集中！" : @post.title %>">
+      <%= form.text_field :title, value: @post.title.blank? ? "フレンド募集中！" : @post.title %>
     </div>
     <div class = "field" >
       <p>ゲーム名</p>
-      <input type="text" name= "game" value = "<%= @post.game %>">
+      <%= form.text_field :game, value: @post.game %>
     </div>
     <div class = "field" >
       <p>プラットフォーム</p>
-      <input type="text" name= "platform" value="<%= @post.platform %>">
+      <%= form.select :platform, {"PC": "PC","PS4": "PS4","スマートフォン":"スマートフォン","Nintendo Switch": "Nintendo Sweitch","Xbox":"Xbox","Nintendo 3DS": "Nintendo 3DS",}, :selected => @post.platform %>
+    </div>
     </div>
     <div class = "field" >
       <p>コメント</p>
-      <textarea name="comment" ><%= @post.comment %></textarea>
+      <%= form.text_area :comment, value:@post.comment %>
     </div>
     <div class = "actions">
-      <input type="submit" value="投稿">
+      <%= form.submit "投稿" %>
     </div>
   </div>
 <% end %>

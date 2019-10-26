@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :sign_in_required ,only: [:new, :edit, :create, :update, :destroy]
-  PER = 8
+  PER = 10
 
   def index
     @posts = Post.all.order(createde_at: :desc)
