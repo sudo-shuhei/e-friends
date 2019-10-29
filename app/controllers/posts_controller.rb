@@ -58,4 +58,12 @@ class PostsController < ApplicationController
     prev_params = Rack::Utils.parse_nested_query(prev_q)
     params[:q] = prev_params['q']
   end
+
+  def search
+    @game = Post.where('game LIKE(?)', "%#{params[:keyword]}%")
+    respond_to do |format|
+      format.json { render '/', json: @game }
+    end
+  end
+
 end

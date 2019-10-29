@@ -5,6 +5,7 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -25,12 +26,18 @@
       <% end %>
       <%= link_to '新規投稿', '/posts/new' %>
       <%= link_to '投稿一覧', '/posts/index' %>
+
+      <!-- <script type="text/javascript">alert('Hello World!');</script> -->
+      <!-- <p>Hello World!</p><script type="text/javascript">$("p").css("color", "red");</script> -->
       <%= search_form_for @search, url: "/posts/index" do |f| %>
-        <%= f.text_field :title_cont ,placeholder: 'タイトル' %>
-        <%= f.text_field :game_cont ,placeholder: 'ゲーム名' %>
-        <%= f.text_field :platform_cont ,placeholder: 'プラットフォーム' %>
+        <%= f.text_field :title_cont ,placeholder: 'タイトル' ,id: "title"%>
+        <%= f.text_field :game_cont ,placeholder: 'ゲーム名' ,id:"game"%>
+        <%= f.text_field :platform_cont ,placeholder: 'プラットフォーム', id:"platform" %>
         <%= f.submit ("検索") , class: 'search-btn'%>
       <% end %>
+      <ul id = "result">
+
+      </ul>
       </nav>
     </header>
 
