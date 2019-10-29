@@ -25,5 +25,6 @@
 - gem devise ユーザー周りの機能
 - gem carrierwave 画像アップロード機能
 - gem kaminari ページネーション
+- gem ransack 検索機能
 - jQuery,Ajax インクリメンタルサーチ
 - heroku デプロイ
