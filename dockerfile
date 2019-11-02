@@ -12,3 +12,6 @@ RUN gem install bundler
 RUN bundle install
 
 ADD . /myproject
+
+RUN useradd -u 1000 -m docker
+USER 1000

@@ -2,6 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Post, type: :model do
   #pending "add some examples to (or delete) #{__FILE__}"
+  it "generates associated data from a factory" do
+    post = FactoryBot.create(:post)
+    puts "This post's user is #{post.user.inspect}"
+  end
   it "is invalid without a title" do
     @post = Post.new(title: nil)
     @post.valid?
