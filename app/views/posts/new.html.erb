@@ -1,7 +1,7 @@
 <h1>新規投稿ページ</h1>
 
 <%= form_with url:"/posts/create", local: true do |form| %>
-  <div class = "postform" >
+  <div class = "postform" id = "postform">
     <div class = "error_messages">
       <% @post.errors.full_messages.each do |message| %>
         <%= message %>

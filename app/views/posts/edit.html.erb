@@ -1,7 +1,7 @@
 <h1>投稿編集ページ</h1>
 
 <%= form_with url:"/posts/#{@post.id}/update", local: true do |form| %>
-  <div class = "postform" >
+  <div class = "postform" id = "postform">
     <div class = "error_messages">
       <% @post.errors.full_messages.each do |message| %>
         <%= message %>
@@ -25,7 +25,7 @@
       <%= form.text_area :comment, value:@post.comment %>
     </div>
     <div class = "actions">
-      <%= form.submit "投稿" %>
+      <%= form.submit "決定" %>
     </div>
   </div>
 <% end %>

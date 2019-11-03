@@ -38,6 +38,10 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find_by(id:params[:id])
+    if @post.user.id != current_user.id
+      flash[:notice] = "許可されていません"
+      redirect_to("/posts/index")
+    end
     if @post.update(title: params[:title], game:params[:game], platform:params[:platform], comment:params[:comment])
       flash[:notice] = "編集しました"
       redirect_to("/posts/index")
@@ -48,6 +52,10 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find_by(id:params[:id])
+    if @post.user.id != current_user.id
+      flash[:notice] = "許可されていません"
+      redirect_to("/posts/index")
+    end
     @post.destroy
     flash[:notice] = "削除しました"
     redirect_to("/posts/index")
@@ -65,5 +73,4 @@ class PostsController < ApplicationController
       format.json { render '/', json: @game }
     end
   end
-
 end
