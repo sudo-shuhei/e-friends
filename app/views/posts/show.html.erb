@@ -27,7 +27,11 @@
 
   <div class = "requestform" >
     <% if current_user.nil? or current_user.id != @post.user.id %>
-      <%= link_to "リクエスト", "/request/#{@post.id}/form" %>
+      <% if @request.nil? %>
+        <%= link_to "リクエスト", "/request/#{@post.id}/form" %>
+      <% else %>
+        <%= "リクエスト済み" %>
+      <% end %>
     <% end %>
   </div>
 
