@@ -1,7 +1,26 @@
 require 'rails_helper'
 
 RSpec.describe Message, type: :model do
-  #pending "add some examples to (or delete) #{__FILE__}"
+  it "generates associated data from a factory" do
+    def message_room_id(first_user_id, second_user_id)
+      if first_user_id < second_user_id
+        "#{first_user_id}-#{second_user_id}"
+      else
+        "#{second_user_id}-#{first_user_id}"
+      end
+    end
+    @post = FactoryBot.create(:post)
+    user1 = FactoryBot.create(:user, name: "user1")
+    user2 = FactoryBot.create(:user, name: "user2", email: "another_user@example.com")
+    message = Message.new(
+      from_user_id: user1.id,
+      to_user_id: user2.id,
+      content: "こんにちは！",
+      room_id: message_room_id(user1.id,user2.id)
+    )
+    message.save
+    #puts "This message's user is #{message.user.inspect}"
+  end
   it "is invalid without a from_user_id" do
     message = Message.new(from_user_id: nil)
     message.valid?

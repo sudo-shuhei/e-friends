@@ -1,5 +1,5 @@
 class Message < ApplicationRecord
-  belongs_to :user, optional: true
+  belongs_to :user, class_name: 'User', foreign_key: :from_user_id
 
   default_scope -> {order(created_at: :asc)}
 

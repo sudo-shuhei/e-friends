@@ -1,4 +1,4 @@
-<h1><%= partner?(params[:id]).name %>さんとのメッセージ画面</h1>
+<h1><%= @partner.name %>さんとのメッセージ画面</h1>
 <div>
   <% @messages.each do |message| %>
     <%= which_user?(message.from_user_id).name %>

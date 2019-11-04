@@ -2,6 +2,18 @@ require 'rails_helper'
 
 RSpec.describe Request, type: :model do
   #pending "add some examples to (or delete) #{__FILE__}"
+  it "generates associated data" do
+    user1 = FactoryBot.create(:user, name: "user1")
+    user2 = FactoryBot.create(:user, email: "another_user@example.com")
+    @post = FactoryBot.create(:post, user: user1)
+    @request = Request.new(
+      post_id: @post.id,
+      user_id: user2.id,
+      comment: "フレンドになりましょう",
+      post_user_id: user1.id)
+      @request.save
+    #puts "This request's user is #{@request.user.inspect}"
+  end
   it "is invalid without a post_id" do
     request = Request.new(post_id: "")
     request.valid?

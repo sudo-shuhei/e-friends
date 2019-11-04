@@ -54,4 +54,38 @@ RSpec.feature "Posts", type: :feature do
      click_button "送信"
      expect(page).to have_content "リクエストを送信しました"
    end
+   scenario "user accept a request" do
+     user1 = FactoryBot.create(:user, name: "user1")
+     user2 = FactoryBot.create(:user, email: "another_user@example.com")
+     @post = FactoryBot.create(:post, user: user1)
+     @request = Request.new(
+       post_id: @post.id,
+       user_id: user2.id,
+       comment: "フレンドになりましょう",
+       post_user_id: user1.id)
+       @request.save
+     sign_in user1
+     visit root_path
+     click_link "リクエストが届いています"
+     click_link "承認"
+     #expect(current_path).to eq "/message/#{user1.id}-#{user2.id}"
+     expect(page).to have_content "リクエストを承認しました! メッセージを送りましょう"
+   end
+   scenario "user deny a request" do
+     user1 = FactoryBot.create(:user, name: "user1")
+     user2 = FactoryBot.create(:user, email: "another_user@example.com")
+     @post = FactoryBot.create(:post, user: user1)
+     @request = Request.new(
+       post_id: @post.id,
+       user_id: user2.id,
+       comment: "フレンドになりましょう",
+       post_user_id: user1.id)
+       @request.save
+     sign_in user1
+     visit root_path
+     expect{
+       click_link "リクエストが届いています"
+       click_link "×"
+     }.to change(user2.requests, :count).by(-1)
+   end
 end

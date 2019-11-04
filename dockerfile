@@ -14,4 +14,5 @@ RUN bundle install
 ADD . /myproject
 
 RUN useradd -u 1000 -m docker
+RUN usermod -aG sudo docker
 USER 1000

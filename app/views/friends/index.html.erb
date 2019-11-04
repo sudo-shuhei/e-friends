@@ -3,6 +3,6 @@
 <div>
   <% @friends.each do |friend| %>
     <% f= User.find_by(id: friend.to_user_id) %>
-    <%= link_to "#{f.name}", "/users/#{f.id}" %>
+    <%= link_to "#{f.name}", "/users/#{f.id}/show" %>
   <% end %>
 </div>

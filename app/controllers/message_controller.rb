@@ -1,8 +1,10 @@
 class MessageController < ApplicationController
   helper_method :partner?
-  
+
   def partner?(room_id)
-    user1, user2 = room_id[0].to_i, room_id[2].to_i
+    index = room_id.index("-")
+    user1, user2 = room_id[0..index-1], room_id[index+1..-1].to_i
+    #puts user1, user2
     if current_user.id == user2
       partner_id = user1
     else
@@ -14,6 +16,7 @@ class MessageController < ApplicationController
   def show
     @room_id = params[:id]
     @messages = Message.recent_in_room(@room_id)
+    @partner = partner?(@room_id)
   end
 
   def create
