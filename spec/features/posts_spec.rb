@@ -43,5 +43,15 @@ RSpec.feature "Posts", type: :feature do
      click_link "削除"
      expect(page).to have_content "削除しました"
    end
-   scenario "user "
+   scenario "user requests" do
+     user1 = FactoryBot.create(:user)
+     user2 = FactoryBot.create(:user, email: "another_user@example.com")
+     @post = FactoryBot.create(:post, user: user1)
+     sign_in user2
+     visit "/posts/#{@post.id}"
+     click_link "リクエスト"
+     fill_in "comment", with: "フレンドになりましょう"
+     click_button "送信"
+     expect(page).to have_content "リクエストを送信しました"
+   end
 end
