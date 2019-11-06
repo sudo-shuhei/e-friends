@@ -11,34 +11,48 @@
 
   <body>
     <header>
-      <nav>
+      <nav class="navbar bg-light">
         <div class = "">
           <h1><%= link_to "E-friends", "/" %></h1>
         </div>
-      <% if user_signed_in? %>
-      <div class = "bg-primary">
-        <strong><%= link_to current_user.name, "/users/#{current_user.id}/show" %></strong>
-        <!-- <%= link_to 'プロフィール変更', edit_user_registration_path %> -->
-        <%= link_to 'ログアウト', sign_out_path %>
-      <% else %>
-        <%= link_to 'サインアップ', new_user_registration_path %>
-        <%= link_to 'ログイン', new_user_session_path %>
-      <% end %>
-      <%= link_to '新規投稿', '/posts/new' %>
-      <!-- <%= link_to '投稿一覧', '/posts/index' %> -->
-    </div>
-      <!-- <script type="text/javascript">alert('Hello World!');</script> -->
-      <!-- <p>Hello World!</p><script type="text/javascript">$("p").css("color", "red");</script> -->
-      <%= search_form_for @search, url: "/posts/index" do |f| %>
-        <%= f.text_field :title_cont ,placeholder: 'タイトル' ,id: "title"%>
-        <%= f.text_field :game_cont ,placeholder: 'ゲーム名' ,id:"game"%>
-        <%= f.text_field :platform_cont ,placeholder: 'プラットフォーム', id:"platform" %>
-        <%= f.submit ("検索") , class: 'search-btn'%>
-      <% end %>
-      <ul id = "result">
-
-      </ul>
+        <div class = "">
+          <% if user_signed_in? %>
+            <strong><%= link_to current_user.name, "/users/#{current_user.id}/show",class: "mr-4" %></strong>
+            <!-- <%= link_to 'プロフィール変更', edit_user_registration_path %> -->
+              <%= link_to 'ログアウト', sign_out_path, class: "btn btn-outline-dark p-1 m-1"%>
+          <% else %>
+            <%= link_to 'サインアップ', new_user_registration_path, class: "btn btn-outline-dark p-1 m-1" %>
+            <%= link_to 'ログイン', new_user_session_path, class: "btn btn-outline-dark p-1 m-1" %>
+            <% end %>
+          <%= link_to '新規投稿', '/posts/new', class: "btn btn-outline-dark p-1 m-1" %>
+          <%= link_to '投稿一覧', '/posts/index', class: "btn btn-outline-dark p-1 m-1" %>
+        </div>
       </nav>
+      <div class= "bg-light pb-2">
+        <p class="mx-4 mb-1">掲示を検索する</p>
+        <div class = "container text-left mx-4">
+          <%= search_form_for @search, url: "/posts/index" do |f| %>
+            <div class = "row">
+              <div class= "col-xs-12 col-lg-3 pb-2">
+                <%= f.text_field :title_cont ,placeholder: '掲示タイトル' ,id: "title"%>
+              </div>
+              <div class = "col-xs-12 col-lg-3 pb-2">
+                <%= f.text_field :game_cont ,placeholder: 'ゲーム名' ,id:"game"%>
+                <ul id = "result" class = "m-0">
+                </ul>
+              </div>
+              <div class="col-xs-12 col-lg-3 pb-2">
+                <%= f.text_field :platform_cont ,placeholder: 'プラットフォーム', id:"platform" %>
+              </div>
+              <div class ="col-xs-12 ml-3">
+                <%= f.submit ("検索") , class: 'search-btn'%>
+              </div>
+          </div>
+          <% end %>
+
+        </div>
+      </div>
+
     </header>
 
     <p class="notice"><%= notice %></p>
@@ -46,7 +60,6 @@
     <% if current_user.present? && Request.where(post_user_id: current_user.id).present? %>
       <%= link_to "リクエストが届いています", "/request/index" %>
     <% end %>
-    <br>
     <% if @notifications.present? %>
       <% @notifications.each do |notification| %>
         <%= link_to notification.content, "/notification/#{notification.id}" %>
