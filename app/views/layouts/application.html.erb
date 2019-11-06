@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>EFriends</title>
-    <%= csrf_meta_tags %>
 
+    <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <title>EFriends</title>
   </head>
 
   <body>
     <header>
       <nav>
-        <div>
+        <div class = "title-logo">
           <h1><%= link_to "E-friends", "/" %></h1>
         </div>
       <% if user_signed_in? %>
-        <%# <strong><%= link_to current_user.email, pages_show_path %><%#</strong> %>
+      <div class = "text-right">
         <strong><%= link_to current_user.name, "/users/#{current_user.id}/show" %></strong>
-        <%= link_to 'プロフィール変更', edit_user_registration_path %>
+        <!-- <%= link_to 'プロフィール変更', edit_user_registration_path %> -->
         <%= link_to 'ログアウト', sign_out_path %>
       <% else %>
         <%= link_to 'サインアップ', new_user_registration_path %>
         <%= link_to 'ログイン', new_user_session_path %>
       <% end %>
       <%= link_to '新規投稿', '/posts/new' %>
-      <%= link_to '投稿一覧', '/posts/index' %>
-
+      <!-- <%= link_to '投稿一覧', '/posts/index' %> -->
+    </div>
       <!-- <script type="text/javascript">alert('Hello World!');</script> -->
       <!-- <p>Hello World!</p><script type="text/javascript">$("p").css("color", "red");</script> -->
       <%= search_form_for @search, url: "/posts/index" do |f| %>

@@ -3,9 +3,12 @@
 
   <img src="<%= current_user.image %>" width="100">
   <p><%= current_user.name%></p>
-  <p><%= current_user.email%></p>
+  <%= link_to 'プロフィール変更', edit_user_registration_path %>
+  <!-- <p><%= current_user.email%></p> -->
   <p><%= current_user.profile %></p>
-
+  <div>
+    <%= link_to "届いたリクエスト一覧", "/request/index" %>
+  </div>
   <div>
     <%= link_to "フレンド一覧", "/friends/#{current_user.id}" %>
   </div>
