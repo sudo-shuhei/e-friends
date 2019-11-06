@@ -29,6 +29,9 @@ gem 'carrierwave'
 gem 'kaminari'
 #use ransack
 gem 'ransack'
+#bootstrap
+gem 'bootstrap'
+gem 'jquery-rails'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

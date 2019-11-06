@@ -12,11 +12,11 @@
   <body>
     <header>
       <nav>
-        <div class = "title-logo">
+        <div class = "">
           <h1><%= link_to "E-friends", "/" %></h1>
         </div>
       <% if user_signed_in? %>
-      <div class = "text-right">
+      <div class = "bg-primary">
         <strong><%= link_to current_user.name, "/users/#{current_user.id}/show" %></strong>
         <!-- <%= link_to 'プロフィール変更', edit_user_registration_path %> -->
         <%= link_to 'ログアウト', sign_out_path %>
