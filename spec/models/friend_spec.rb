@@ -5,11 +5,11 @@ RSpec.describe Friend, type: :model do
   it "is invalid without a from_user_id" do
     friend = Friend.new(from_user_id: nil)
     friend.valid?
-    expect(friend.errors[:from_user_id]).to include("can't be blank")
+    expect(friend.errors[:from_user_id]).to include("を入力してください")
   end
   it "is invalid without a to_user_id" do
     friend = Friend.new(to_user_id: nil)
     friend.valid?
-    expect(friend.errors[:to_user_id]).to include("can't be blank")
+    expect(friend.errors[:to_user_id]).to include("を入力してください")
   end
 end
