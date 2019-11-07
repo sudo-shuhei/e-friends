@@ -23,6 +23,8 @@ gem 'uglifier', '>= 1.3.0'
 
 #use devise for authentication
 gem 'devise'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
 #use carrierwave for upload
 gem 'carrierwave'
 #use kaminari

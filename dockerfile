@@ -9,7 +9,7 @@ ADD Gemfile /myproject/Gemfile
 ADD Gemfile.lock /myproject/Gemfile.lock
 
 RUN gem install bundler
-RUN bundle install
+RUN bundle install -j8
 
 ADD . /myproject
 
