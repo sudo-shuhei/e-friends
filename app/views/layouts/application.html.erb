@@ -1,71 +1,82 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
 
-    <%= csrf_meta_tags %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <title>EFriends</title>
-  </head>
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <title>EFriends</title>
+</head>
 
-  <body>
-    <header>
-      <nav class="navbar bg-light">
-        <div class = "">
-          <h1><%= link_to "E-friends", "/" %></h1>
-        </div>
-        <div class = "">
+<body>
+  <header>
+    <nav class="navbar bg-light">
+      <div class = "">
+        <h1><%= link_to "E-friends", "/" %></h1>
+      </div>
+      <ul class = "navbar nav">
+        <li class ="nav-item">
           <% if user_signed_in? %>
-            <strong><%= link_to current_user.name, "/users/#{current_user.id}/show",class: "mr-4" %></strong>
-            <!-- <%= link_to 'プロフィール変更', edit_user_registration_path %> -->
-              <%= link_to 'ログアウト', sign_out_path, class: "btn btn-outline-dark p-1 m-1"%>
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img src="<%= current_user.image %>" width="50" class="mr-2">
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li><%= link_to "マイページ", "/users/#{current_user.id}/show" %></li>
+              <li><%= link_to "受信リクエスト一覧", "/request/index" %></li>
+              <li><%= link_to "フレンド", "/friends/#{current_user.id}"%></li>
+              <li><%= link_to "ログアウト", sign_out_path %></li>
+            </ul>
+          </div>
           <% else %>
             <%= link_to 'サインアップ', new_user_registration_path, class: "btn btn-outline-dark p-1 m-1" %>
             <%= link_to 'ログイン', new_user_session_path, class: "btn btn-outline-dark p-1 m-1" %>
-            <% end %>
-          <%= link_to '新規投稿', '/posts/new', class: "btn btn-outline-dark p-1 m-1" %>
-          <%= link_to '投稿一覧', '/posts/index', class: "btn btn-outline-dark p-1 m-1" %>
-        </div>
-      </nav>
-      <div class= "bg-light pb-2">
-        <p class="mx-4 mb-1">掲示を検索する</p>
-        <div class = "container text-left mx-4">
-          <%= search_form_for @search, url: "/posts/index" do |f| %>
-            <div class = "row">
-              <div class= "col-xs-12 col-lg-3 pb-2">
-                <%= f.text_field :title_cont ,placeholder: '掲示タイトル' ,id: "title"%>
-              </div>
-              <div class = "col-xs-12 col-lg-3 pb-2">
-                <%= f.text_field :game_cont ,placeholder: 'ゲーム名' ,id:"game"%>
-                <ul id = "result" class = "m-0">
-                </ul>
-              </div>
-              <div class="col-xs-12 col-lg-3 pb-2">
-                <%= f.text_field :platform_cont ,placeholder: 'プラットフォーム', id:"platform" %>
-              </div>
-              <div class ="col-xs-12 ml-3">
-                <%= f.submit ("検索") , class: 'search-btn'%>
-              </div>
-          </div>
           <% end %>
-
+        </li>
+        <li class ="nav-item"><%= link_to '新規投稿', '/posts/new', class: "btn btn-outline-dark p-1 m-1" %></li>
+        <li class ="nav-item"><%= link_to '投稿一覧', '/posts/index', class: "btn btn-outline-dark p-1 m-1" %></li>
+      </ul>
+    </nav>
+    <div class= "bg-light pb-2">
+      <p class="mx-4 mb-1">掲示を検索する</p>
+      <div class = "container text-left mx-4">
+        <%= search_form_for @search, url: "/posts/index" do |f| %>
+        <div class = "row">
+          <div class= "col-xs-12 col-lg-3 pb-2">
+            <%= f.text_field :title_cont ,placeholder: '掲示タイトル' ,id: "title"%>
+          </div>
+          <div class = "col-xs-12 col-lg-3 pb-2">
+            <%= f.text_field :game_cont ,placeholder: 'ゲーム名' ,id:"game"%>
+            <ul id = "result" class = "m-0">
+            </ul>
+          </div>
+          <div class="col-xs-12 col-lg-3 pb-2">
+            <%= f.text_field :platform_cont ,placeholder: 'プラットフォーム', id:"platform" %>
+          </div>
+          <div class ="col-xs-12 ml-3">
+            <%= f.submit ("検索") , class: 'search-btn'%>
+          </div>
         </div>
+        <% end %>
+
       </div>
+    </div>
 
-    </header>
+  </header>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <% if current_user.present? && Request.where(post_user_id: current_user.id).present? %>
-      <%= link_to "リクエストが届いています", "/request/index" %>
-    <% end %>
-    <% if @notifications.present? %>
-      <% @notifications.each do |notification| %>
-        <%= link_to notification.content, "/notification/#{notification.id}" %>
-        <br>
-      <% end %>
-    <% end %>
-    <%= yield %>
-  </body>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+  <% if current_user.present? && Request.where(post_user_id: current_user.id).present? %>
+  <%= link_to "リクエストが届いています", "/request/index" %>
+  <% end %>
+  <% if @notifications.present? %>
+  <% @notifications.each do |notification| %>
+  <%= link_to notification.content, "/notification/#{notification.id}" %>
+  <br>
+  <% end %>
+  <% end %>
+  <%= yield %>
+</body>
 </html>
