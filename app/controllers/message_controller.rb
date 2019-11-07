@@ -16,7 +16,9 @@ class MessageController < ApplicationController
   def show
     @room_id = params[:id]
     @messages = Message.recent_in_room(@room_id)
+    @message = Message.new()
     @partner = partner?(@room_id)
+    @notification = Notification.new()
   end
 
   def create
@@ -26,16 +28,27 @@ class MessageController < ApplicationController
       to_user_id: partner?(params[:id]).id,
       room_id: params[:id]
     )
-    @message.save
+    if @message.save
+      other_notification = Notification.find_by(
+        to_user_id: partner?(params[:id]).id,
+        content: "メッセージが届いています",
+        post_id: params[:id],
+        message_type: "message")
+      if other_notification.blank?
+        @notification = Notification.new(
+          to_user_id: partner?(params[:id]).id,
+          content: "メッセージが届いています",
+          post_id: params[:id],
+          message_type: "message"
+        )
+        @notification.save
+      end
+      flash[:notice]= "メッセージを送信しました"
+      redirect_to("/message/#{params[:id]}")
+    else
+      render "message/show"
+    end
 
-    notification = Notification.new(
-      to_user_id: partner?(params[:id]).id,
-      content: "メッセージが届いています",
-      post_id: params[:id],
-      message_type: "message"
-    )
-    notification.save
-    redirect_to("/message/#{params[:id]}")
   end
 
 end

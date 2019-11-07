@@ -71,9 +71,11 @@ class PostsController < ApplicationController
   end
 
   def search
-    @game = Post.where('game LIKE(?)', "%#{params[:keyword]}%")
-    respond_to do |format|
-      format.json { render '/', json: @game }
+    unless params[:keyword].blank?
+      @game = Post.where('game LIKE(?)', "%#{params[:keyword]}%")
+      respond_to do |format|
+        format.json { render '/', json: @game }
+      end
     end
   end
 end

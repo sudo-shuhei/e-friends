@@ -31,8 +31,8 @@
             </ul>
           </div>
           <% else %>
-            <%= link_to 'サインアップ', new_user_registration_path, class: "btn btn-outline-dark p-1 m-1" %>
-            <%= link_to 'ログイン', new_user_session_path, class: "btn btn-outline-dark p-1 m-1" %>
+          <%= link_to 'サインアップ', new_user_registration_path, class: "btn btn-outline-dark p-1 m-1" %>
+          <%= link_to 'ログイン', new_user_session_path, class: "btn btn-outline-dark p-1 m-1" %>
           <% end %>
         </li>
         <li class ="nav-item"><%= link_to '新規投稿', '/posts/new', class: "btn btn-outline-dark p-1 m-1" %></li>
@@ -66,17 +66,21 @@
 
   </header>
 
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-  <% if current_user.present? && Request.where(post_user_id: current_user.id).present? %>
-  <%= link_to "リクエストが届いています", "/request/index" %>
-  <% end %>
-  <% if @notifications.present? %>
-  <% @notifications.each do |notification| %>
-  <%= link_to notification.content, "/notification/#{notification.id}" %>
-  <br>
-  <% end %>
-  <% end %>
-  <%= yield %>
-</body>
-</html>
+  <p class="alert-info text-center"><%= notice %></p>
+  <p class="alert-danger text-center"><%= alert %></p>
+  <div class ="alert-info text-center">
+    <% if current_user.present? && Request.where(post_user_id: current_user.id).present? %>
+    <%= link_to "リクエストが届いています", "/request/index" %>
+    <% end %></div>
+    <div class ="alert-info text-center">
+      <% if @notifications.present? %>
+      <% @notifications.each do |notification| %>
+      <%= link_to notification.content, "/notification/#{notification.id}" %>
+      <% end %>
+      <% end %>
+    </div>
+    <div class = "mx-5 my-4">
+      <%= yield %>
+    </div>
+  </body>
+  </html>
