@@ -1,24 +1,25 @@
-<h1>リクエスト一覧</h1>
+<h2>届いたリクエスト一覧</h2>
 
 <div>
   <% @requests.each do |request| %>
     <br>
-    <div>
-      <%= request.post.title %>
-      <%= request.post.game %>
-      <%= request.post.platform %>
+    <div class = "p-2 m-1 border">
+      <%= request.post.title %><br>
+      ゲームタイトル;<%= request.post.game %>
+      プラットフォーム;<%= request.post.platform %><br>
       <%= request.post.comment %>
-    </div>
-    <div>
-      <%= request.user.name %>
-    </div>
+      <br>
+      <br>
 
-    <div>
+      <img src="<%= request.user.image %>" width="40">
+      <%= request.user.name %>
+      <br>
       <%= request.comment %>
-    </div>
-    <div>
+      <br>
+      <div class = "text-right mx-4">
       <%= link_to "承認", "/request/#{request.id}/accept" %>
-      <%= link_to "×", "/request/#{request.id}/reject" %>
+      　<%= link_to "×", "/request/#{request.id}/reject" %>
+    </div>
     </div>
   <% end %>
 </div>

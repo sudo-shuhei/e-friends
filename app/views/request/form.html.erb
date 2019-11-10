@@ -1,6 +1,6 @@
-<h1>リクエスト送信画面</h1>
+<h2>リクエスト送信</h2>
 
-<div class = "postbody" >
+<!-- <div class = "postbody" >
   <div class = "posttitle" >
     <%= @post.title %>
   </div>
@@ -18,8 +18,31 @@
     <%= @post.comment %>
   </div>
 </div>
-</br>
+</br> -->
+<div class = "postbody" >
+  <div class = "mb-2">
+    <img src="<%= @post.user.image %>" width="50">
+    <span class = "user mx-3">
+      <%= @post.user.name %>
+      <!-- <%= @post.user.profile %> -->
+    </span>
+  </div>
+  <div class = "posttitle" >
+    <%= @post.title %>
+  </div>
 
+  <div class = "postgame" >
+    ゲームタイトル;<%= @post.game %>
+  </div>
+  <div class = "postplatform" >
+    プラットフォーム;<%= @post.platform %>
+  </div>
+  <br>
+  <div class = "postcomment border p-2" >
+    <%= @post.comment %>
+  </div>
+</div>
+<br>
 <p>リクエストを送りましょう</p>
 <%= form_with url: "/request/#{@post.id}/create" do |form| %>
   <%= hidden_field_tag :from_user_id, current_user.id %>

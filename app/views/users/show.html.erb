@@ -3,23 +3,28 @@
 
   <img src="<%= current_user.image %>" width="100">
   <p><%= current_user.name%></p>
-  <%= link_to 'プロフィール変更', edit_user_registration_path %>
+  <%= link_to 'プロフィール変更', edit_user_registration_path , class: "text-dark"%>
   <!-- <p><%= current_user.email%></p> -->
   <p><%= current_user.profile %></p>
   <div>
-    <%= link_to "届いたリクエスト一覧", "/request/index" %>
+    <%= link_to "届いたリクエスト一覧", "/request/index", class: "text-dark" %>
   </div>
   <div>
-    <%= link_to "フレンド一覧", "/friends/#{current_user.id}" %>
+    <%= link_to "フレンド一覧", "/friends/#{current_user.id}", class: "text-dark" %>
   </div>
 
-  <div>
-    <p>自分の掲示一覧</p>
-    <% @posts.each do |post| %>
-      <%= link_to "#{post.title}", "/posts/#{post.id}"%>
-      <br>
-    <% end %>
-  </div>
+  <p class ="my-3">自分の掲示一覧</p>
+  <% @posts.each do |post| %>
+    <div class = "post p-2 m-1 border" >
+      <%= link_to "/posts/#{post.id}", class: "text-dark" do %>
+        <%= post.title %><br>
+        ゲームタイトル;<%= post.game %><br>
+        プラットフォーム;<%= post.platform %>
+        <%#= link_to "編集", "/posts/#{post.id}/edit"%>
+        <%#= link_to "削除", "/posts/#{post.id}/destroy", {method:post}%>
+      <% end %>
+    </div>
+  <% end %>
 <% else %>
   <img src="<%= @user.image %>" width="100">
   <p><%= @user.name%></p>
@@ -32,9 +37,20 @@
 
   <div>
     <p>掲示一覧</p>
-    <% @posts.each do |post| %>
+    <!-- <% @posts.each do |post| %>
       <%= link_to "#{post.title}", "/posts/#{post.id}"%>
       <br>
+    <% end %> -->
+    <% @posts.each do |post| %>
+      <div class = "post p-2 m-1 border" >
+        <%= link_to "/posts/#{post.id}", class: "text-dark" do %>
+          <%= post.title %><br>
+          ゲームタイトル;<%= post.game %><br>
+          プラットフォーム;<%= post.platform %>
+          <%#= link_to "編集", "/posts/#{post.id}/edit"%>
+          <%#= link_to "削除", "/posts/#{post.id}/destroy", {method:post}%>
+        <% end %>
+      </div>
     <% end %>
   </div>
 <% end %>

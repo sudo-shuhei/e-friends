@@ -9,11 +9,11 @@
   <title>EFriends</title>
 </head>
 
-<body>
+<body class = "bg-light">
   <header>
-    <nav class="navbar bg-light">
+    <nav class="navbar bg-secondary">
       <div class = "">
-        <h1><%= link_to "E-friends", "/" %></h1>
+        <h1><%= link_to "E-friends", "/", class: "text-warning" %></h1>
       </div>
       <ul class = "navbar nav">
         <li class ="nav-item">
@@ -24,10 +24,10 @@
               <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <li><%= link_to "マイページ", "/users/#{current_user.id}/show" %></li>
-              <li><%= link_to "受信リクエスト一覧", "/request/index" %></li>
-              <li><%= link_to "フレンド", "/friends/#{current_user.id}"%></li>
-              <li><%= link_to "ログアウト", sign_out_path %></li>
+              <li><%= link_to "マイページ", "/users/#{current_user.id}/show", class: "text-dark" %></li>
+              <li><%= link_to "受信リクエスト一覧", "/request/index", class: "text-dark" %></li>
+              <li><%= link_to "フレンド", "/friends/#{current_user.id}", class: "text-dark"%></li>
+              <li><%= link_to "ログアウト", sign_out_path, class: "text-dark" %></li>
             </ul>
           </div>
           <% else %>
@@ -39,7 +39,7 @@
         <li class ="nav-item"><%= link_to '投稿一覧', '/posts/index', class: "btn btn-outline-dark p-1 m-1" %></li>
       </ul>
     </nav>
-    <div class= "bg-light pb-2">
+    <div class= "bg-secondary pb-2">
       <p class="mx-4 mb-1">掲示を検索する</p>
       <div class = "container text-left mx-4">
         <%= search_form_for @search, url: "/posts/index" do |f| %>
@@ -66,8 +66,8 @@
 
   </header>
 
-  <p class="alert-info text-center"><%= notice %></p>
-  <p class="alert-danger text-center"><%= alert %></p>
+  <div class="alert-info text-center"><%= notice %></div>
+  <div class="alert-danger text-center"><%= alert %></div>
   <div class ="alert-info text-center">
     <% if current_user.present? && Request.where(post_user_id: current_user.id).present? %>
     <%= link_to "リクエストが届いています", "/request/index" %>
@@ -79,7 +79,7 @@
       <% end %>
       <% end %>
     </div>
-    <div class = "mx-5 my-4">
+    <div class = "mx-5 my-4 bg-white p-4">
       <%= yield %>
     </div>
   </body>

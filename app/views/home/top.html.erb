@@ -1,10 +1,10 @@
-<h2>新着の掲示</h2>
+<h3>新着の掲示</h3>
 <% @posts.each do |post| %>
-  <div class = "post" >
-    <%= link_to "/posts/#{post.id}" do %>
-      <%= post.title %>
-      <%= post.game %>
-      <%= post.platform %>
+  <div class = "post p-2 m-1 border" >
+    <%= link_to "/posts/#{post.id}", class: "text-dark" do %>
+      <%= post.title %><br>
+      ゲームタイトル;<%= post.game %><br>
+      プラットフォーム;<%= post.platform %>
       <%#= link_to "編集", "/posts/#{post.id}/edit"%>
       <%#= link_to "削除", "/posts/#{post.id}/destroy", {method:post}%>
     <% end %>

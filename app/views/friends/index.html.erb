@@ -1,8 +1,13 @@
-<h1>フレンド一覧画面</h1>
+<h2>フレンド一覧</h2>
 
-<div>
+<div class = "m-2 p-1 border">
   <% @friends.each do |friend| %>
     <% f= User.find_by(id: friend.to_user_id) %>
-    <%= link_to "#{f.name}", "/users/#{f.id}/show" %>
+    <%= link_to  "/users/#{f.id}/show" do%>
+      <img src="<%= f.image %>" width="50">
+      <span class = "mx-2 text-dark ">
+      <%= f.name %>
+    </span>
+    <% end %>
   <% end %>
 </div>

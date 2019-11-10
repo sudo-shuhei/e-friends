@@ -1,23 +1,28 @@
-<h1>投稿詳細ページ</h1>
+<h1></h1>
 
 <div class = "postbody" >
+  <div class = "mb-2">
+    <img src="<%= @post.user.image %>" width="50">
+    <span class = "user mx-3">
+      <%= @post.user.name %>
+      <!-- <%= @post.user.profile %> -->
+    </span>
+  </div>
   <div class = "posttitle" >
     <%= @post.title %>
   </div>
-  <div class = "user">
-    <%= @post.user.name %>
-    <%= @post.user.profile %>
-  </div>
+
   <div class = "postgame" >
-    <%= @post.game %>
+    ゲームタイトル;<%= @post.game %>
   </div>
   <div class = "postplatform" >
-    <%= @post.platform %>
+    プラットフォーム;<%= @post.platform %>
   </div>
-  <div class = "postcomment" >
+  <br>
+  <div class = "postcomment border p-2" >
     <%= @post.comment %>
   </div>
-
+  <br>
   <div class = "link" >
     <% if user_signed_in? and current_user.id == @post.user.id %>
       <%= link_to "編集", "/posts/#{@post.id}/edit" %>
