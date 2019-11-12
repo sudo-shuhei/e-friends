@@ -25,6 +25,8 @@ test:
 
 production:
   <<: *default
+  database: sudo_production
+  username: sudo
   adapter: postgresql
   encoding: unicode
   pool: 5
