@@ -17,7 +17,7 @@
 - 開発環境　macbook, Ubuntu18.04
 - Ruby on Rails; ruby(2.5.7) Rails(5.1.3)
 - docker
-- AWSEC2; デプロイ　URL:http://52.199.154.241
+- AWSEC2; デプロイ　URL:http://52.199.154.241  
   webサーバー;nginx アプリケーションサーバー;Unicorn
 - bootstrap; css,レスポンシブデザイン
 - rspec/featurespec; 単体/統合テスト
