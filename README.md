@@ -15,8 +15,10 @@
 
 ### 使用技術
 - 開発環境　macbook, Ubuntu18.04
-- Ruby on Rails ruby(2.5.7) Rails(5.1.3)
+- Ruby on Rails; ruby(2.5.7) Rails(5.1.3)
 - docker
+- AWSEC2; デプロイ
+  webサーバー;nginx アプリケーションサーバー;Unicorn
 - bootstrap; css,レスポンシブデザイン
 - rspec/featurespec; 単体/統合テスト
 - gem devise; ユーザー周りの機能
@@ -24,4 +26,3 @@
 - gem kaminari; ページネーション
 - gem ransack; 検索機能
 - jQuery,Ajax; インクリメンタルサーチ
-- heroku; デプロイ
